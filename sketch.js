@@ -16,6 +16,8 @@ var scoreSound, crashSound;
 
 var score;
 
+var run0, run1, run2, run3;
+
 var showHitboxes;
 
 var gameWidth = 600;
@@ -30,6 +32,13 @@ function preload()
 
     scoreSound = loadSound('score.mp3');
     crashSound = loadSound('gameOver.mp3');
+
+    run0 = loadImage('pixil-frame-0.png');
+    run1 = loadImage('pixil-frame-1.png');
+    run2 = loadImage('pixil-frame-2.png');
+    run3 = loadImage('pixil-frame-3.png');
+
+
 }
 
 function setup()
@@ -48,6 +57,11 @@ function setup()
     showHitboxes = false;
     score = 0;
     gameState = IDLE;
+
+    player.addImage('stand', run0);
+    player.addAnimation('run', run0, run1, run2, run3);
+    player.scale = (gameWidth+gameHeight)/6000;
+    player.setCollider('rectangle', 0, 0, gameWidth*0.1, gameHeight*0.05);
 }
 
 function draw()
@@ -114,6 +128,7 @@ function draw()
             for (var i = 0; i < coinGroup.length; i++) {
                 coinGroup[i].debug = showHitboxes;
             }
+            player.debug = showHitboxes;
         }
 
         if (showHitboxes)
@@ -177,6 +192,7 @@ function restartGame()
 function startGame()
 {
     gameState = PLAY;
+    player.changeAnimation('run');
 }
 
 function gameOver()
@@ -188,6 +204,8 @@ function gameOver()
     coinGroup.setLifetimeEach(-1);
     coinGroup.setVelocityYEach(0);
     crashSound.play();
+
+    player.changeAnimation('stand');
 }
 
 function spawnObstacle() {
