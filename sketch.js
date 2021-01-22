@@ -241,7 +241,7 @@ function spawnObstacle() {
     var c = createSprite(((gameWidth/5)*randCoinX)+(gameWidth/10), -100);
     c.scale = (gameWidth+gameHeight)/2400;
     c.addAnimation('coin', coinFrontImg, coinSideImg);
-    c.setCollider('rectangle', 0, 0, gameWidth*0.1/c.scale, gameHeight*0.025/c.scale);
+    c.setCollider('rectangle', 0, 0, gameWidth*0.1/c.scale, gameHeight*0.075/c.scale);
 
     o.debug = showHitboxes;
     c.debug = showHitboxes;
