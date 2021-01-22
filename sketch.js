@@ -61,7 +61,7 @@ function setup()
     player.addImage('stand', run0);
     player.addAnimation('run', run0, run1, run2, run3);
     player.scale = (gameWidth+gameHeight)/6000;
-    player.setCollider('rectangle', 0, 0, gameWidth*0.1, gameHeight*0.05);
+    player.setCollider('rectangle', 0, gameHeight*0.015, gameWidth*0.1, gameHeight*0.25);
 }
 
 function draw()
